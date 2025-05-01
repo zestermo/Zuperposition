@@ -1,0 +1,19 @@
+{
+  "name": "superposition-debate",
+  "version": "1.0.0",
+  "description": "AI-powered debate game with secure API key handling and password authentication",
+  "main": "functions/api.js",
+  "scripts": {
+    "start": "netlify dev",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "netlify-cli": "^12.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superposition: AI Debate Arena</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .gradient-button {
+      background: linear-gradient(to right, #3b82f6, #1e40af);
+    }
+    .gradient-button:hover {
+      background: linear-gradient(to right, #2563eb, #1e3a8a);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 flex flex-col items-center min-h-screen">
+  <div class="container mx-auto p-6 max-w-5xl">
+    <!-- Password Form -->
+    <div id="auth-form" class="bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Enter Password</h2>
+      <input id="password-input" type="password" placeholder="Password" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <button id="submit-password" class="w-full p-3 text-white gradient-button rounded-lg font-semibold">Submit</button>
+      <p id="auth-error" class="text-red-500 mt-2 hidden">Incorrect password. Please try again.</p>
+    </div>
+
+    <!-- Main App (Hidden Initially) -->
+    <div id="app-content" class="hidden">
+      <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Superposition: AI Debate Arena</h1>
+
+      <!-- Debater Configuration -->
+      <div class="mb-10 bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Configure Debaters</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Debater 1 -->
+          <div class="space-y-4">
+            <h3 class="text-xl font-medium text-gray-700">Debater 1</h3>
+            <div>
+              <label class="block text-sm font-medium text-gray-600 mb-1">Name:</label>
+              <input id="debater1-name" type="text" value="Debater A" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600 mb-1">Debate Style:</label>
+              <select id="debater1-style" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="formal">Formal</option>
+                <option value="humorous">Humorous</option>
+                <option value="aggressive">Aggressive</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600 mb-1">Personality:</label>
+              <select id="debater1-personality" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="confident">Confident</option>
+                <option value="witty">Witty</option>
+                <option value="calm">Calm</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600 mb-1">Argument Style:</label>
+              <select id="debater1-argument" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="logical">Logical</option>
+                <option value="emotional">Emotional</option>
+                <option value="anecdotal">Anecdotal</option>
+              </select>
+            </div>
+          </div>
+          <!-- Debater 2 -->
+          <div class="space-y-4">
+            <h3 class="text-xl font-medium text-gray-700">Debater 2</h3>
+            <div>
+              <label class="block text-sm font-medium text-gray-600 mb-1">Name:</label>
+              <input id="debater2-name" type="text" value="Debater B" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600 mb-1">Debate Style:</label>
+              <select id="debater2-style" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="formal">Formal</option>
+订阅
+                <option value="humorous">Humorous</option>
+                <option value="aggressive">Aggressive</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600 mb-1">Personality:</label>
+              <select id="debater2-personality" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="confident">Confident</option>
+                <option value="witty">Witty</option>
+                <option value="calm">Calm</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600 mb-1">Argument Style:</label>
+              <select id="debater2-argument" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="logical">Logical</option>
+                <option value="emotional">Emotional</option>
+                <option value="anecdotal">Anecdotal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic Input -->
+      <div class="mb-10 bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Debate Topic</h2>
+        <input id="debate-topic" type="text" placeholder="e.g., Are boneless wings chicken nuggets?" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button id="start-debate" class="w-full p-3 text-white gradient-button rounded-lg font-semibold">Start Debate</button>
+      </div>
+
+      <!-- Debate Output -->
+      <div id="debate-output" class="bg-white shadow-lg rounded-lg p-6 hidden">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Debate Hall</h2>
+        <div id="debate-content" class="space-y-4"></div>
+        <button id="score-debate" class="w-full p-3 text-white gradient-button rounded-lg font-semibold mt-4 hidden">Score Debate</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Check authentication status
+    async function checkAuth() {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        try {
+          const response = await fetch('/.netlify/functions/api/check-auth', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (response.ok) {
+            document.getElementById('auth-form').classList.add('hidden');
+            document.getElementById('app-content').classList.remove('hidden');
+          } else {
+            localStorage.removeItem('authToken');
+          }
+        } catch (error) {
+          console.error('Auth Check Error:', error);
+          localStorage.removeItem('authToken');
+        }
+      }
+    }
+
+    // Handle password submission
+    document.getElementById('submit-password').addEventListener('click', async () => {
+      const password = document.getElementById('password-input').value;
+      const errorElement = document.getElementById('auth-error');
+
+      try {
+        const response = await fetch('/.netlify/functions/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+
+        if (response.ok) {
+          const { token } = await response.json();
+          localStorage.setItem('authToken', token);
+          document.getElementById('auth-form').classList.add('hidden');
+          document.getElementById('app-content').classList.remove('hidden');
+          errorElement.classList.add('hidden');
+        } else {
+          errorElement.classList.remove('hidden');
+        }
+      } catch (error) {
+        console.error('Auth Error:', error);
+        errorElement.classList.remove('hidden');
+      }
+    });
+
+    // Check auth on page load
+    checkAuth();
+
+    // Debate Logic
+    const API_URL = '/.netlify/functions/api/openai';
+    const MODEL = 'gpt-4o-mini';
+    const MAX_ROUNDS = 3;
+
+    async function getAIResponse(systemPrompt, conversationHistory) {
+      try {
+        const token = localStorage.getItem('authToken');
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              ...conversationHistory
+            ],
+            max_tokens: 100,
+            temperature: 0.7
+          })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`API request failed: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
+        }
+
+        const data = await response.json();
+        if (!data.choices?.[0]?.message?.content) {
+          throw new Error('Invalid API response: No content returned');
+        }
+
+        console.log('Token Usage:', data.usage?.total_tokens || 'N/A');
+        return data.choices[0].message.content.trim();
+      } catch (error) {
+        console.error('API Error:', error);
+        return `Error: Unable to generate response - ${error.message}. Please check the server or network status.`;
+      }
+    }
+
+    function createSystemPrompt(debater, topic, stance, isOpening, opponentName) {
+      if (isOpening) {
+        return `You are ${debater.name}, a debater with a ${debater.style} style, ${debater.personality} personality, and ${debater.argument} argument approach. Your opponent is ${opponentName}. You are debating: "${topic}". You are arguing ${stance}. Provide an opening statement in 2-3 sentences, presenting your position with a "${debater.style}" style, without referencing ${opponentName}. Keep your tone engaging for a formal debate hall.`;
+      }
+      return `You are ${debater.name}, a debater with a ${debater.style} style, ${debater.personality} personality, and ${debater.argument} argument approach. Your opponent is ${opponentName}. You are debating: "${topic}". You are arguing ${stance}. Respond to ${opponentName}'s latest argument in 2-3 sentences, addressing and countering their point with a "${debater.style}" style. Advance your position clearly. Keep your tone engaging for a formal debate hall.`;
+    }
+
+    function createJudgePrompt(debateLog) {
+      const logText = debateLog.map(entry => `${entry.debater} (${entry.stance}, Round ${entry.round || 'Opening'}): ${entry.text}`).join('\n\n');
+      return `You are a neutral debate judge. Review the following debate: "${logText}". Score each debater (0-10) on clarity, persuasiveness, and relevance. Highlight one key point or tactic per debater. Declare a winner based on total scores, explaining your reasoning in 3-5 sentences. Format your response clearly with scores, key points, and the winner.`;
+    }
+
+    function getResponseCount() {
+      return Math.floor(Math.random() * 2) + 1; // 1 or 2
+    }
+
+    document.getElementById('start-debate').addEventListener('click', async () => {
+      const topic = document.getElementById('debate-topic').value.trim();
+      if (!topic) {
+        alert('Please enter a debate topic!');
+        return;
+      }
+
+      const debater1 = {
+        name: document.getElementById('debater1-name').value || 'Debater A',
+        style: document.getElementById('debater1-style').value,
+        personality: document.getElementById('debater1-personality').value,
+        argument: document.getElementById('debater1-argument').value
+      };
+      const debater2 = {
+        name: document.getElementById('debater2-name').value || 'Debater B',
+        style: document.getElementById('debater2-style').value,
+        personality: document.getElementById('debater2-personality').value,
+        argument: document.getElementById('debater2-argument').value
+      };
+
+      const debateOutput = document.getElementById('debate-output');
+      const debateContent = document.getElementById('debate-content');
+      const scoreButton = document.getElementById('score-debate');
+      debateOutput.classList.remove('hidden');
+      debateContent.innerHTML = `<p class="text-lg font-medium text-gray-800">Topic: ${topic}</p>`;
+
+      let historyDebater1 = [{ role: 'system', content: createSystemPrompt(debater1, topic, 'for', true, debater2.name) }];
+      let historyDebater2 = [{ role: 'system', content: createSystemPrompt(debater2, topic, 'against', true, debater1.name) }];
+      let debateLog = [];
+
+      console.log('Generating Debater 1 Opening Statement');
+      const response1Opening = await getAIResponse(historyDebater1[0].content, []);
+      console.log('Debater 1 Opening:', response1Opening);
+      debateContent.innerHTML += `
+        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+          <p class="font-semibold text-blue-600">${debater1.name} (for) - Opening Statement:</p>
+          <p class="text-gray-700">${response1Opening}</p>
+        </div>
+      `;
+      historyDebater1.push({ role: 'assistant', content: response1Opening });
+      historyDebater2.push({ role: 'user', content: response1Opening });
+      debateLog.push({ debater: debater1.name, stance: 'for', text: response1Opening, round: 'Opening' });
+      debateContent.scrollTop = debateContent.scrollHeight;
+
+      console.log('Generating Debater 2 Opening Statement');
+      const response2Opening = await getAIResponse(historyDebater2[0].content, []);
+      console.log('Debater 2 Opening:', response2Opening);
+      debateContent.innerHTML += `
+        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+          <p class="font-semibold text-purple-600">${debater2.name} (against) - Opening Statement:</p>
+          <p class="text-gray-700">${response2Opening}</p>
+        </div>
+      `;
+      historyDebater2.push({ role: 'assistant', content: response2Opening });
+      historyDebater1.push({ role: 'user', content: response2Opening });
+      debateLog.push({ debater: debater2.name, stance: 'against', text: response2Opening, round: 'Opening' });
+      debateContent.scrollTop = debateContent.scrollHeight;
+
+      for (let round = 0; round < MAX_ROUNDS; round++) {
+        const debater1Responses = getResponseCount();
+        console.log(`Round ${round + 1}: ${debater1.name} will respond ${debater1Responses} times`);
+        for (let i = 0; i < debater1Responses; i++) {
+          console.log(`Generating ${debater1.name} Round ${round + 1}, Response ${i + 1}`);
+          const prompt1 = createSystemPrompt(debater1, topic, 'for', false, debater2.name);
+          const response1 = await getAIResponse(prompt1, historyDebater1);
+          console.log(`${debater1.name} Round ${round + 1}, Response ${i + 1}:`, response1);
+          debateContent.innerHTML += `
+            <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+              <p class="font-semibold text-blue-600">${debater1.name} (for) - Round ${round + 1}:</p>
+              <p class="text-gray-700">${response1}</p>
+            </div>
+          `;
+          historyDebater1.push({ role: 'assistant', content: response1 });
+          historyDebater2.push({ role: 'user', content: response1 });
+          debateLog.push({ debater: debater1.name, stance: 'for', text: response1, round: round + 1 });
+          debateContent.scrollTop = debateContent.scrollHeight;
+        }
+
+        const debater2Responses = getResponseCount();
+        console.log(`Round ${round + 1}: ${debater2.name} will respond ${debater2Responses} times`);
+        for (let i = 0; i < debater2Responses; i++) {
+          console.log(`Generating ${debater2.name} Round ${round + 1}, Response ${i + 1}`);
+          const prompt2 = createSystemPrompt(debater2, topic, 'against', false, debater1.name);
+          const response2 = await getAIResponse(prompt2, historyDebater2);
+          console.log(`${debater2.name} Round ${round + 1}, Response ${i + 1}:`, response2);
+          debateContent.innerHTML += `
+            <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+              <p class="font-semibold text-purple-600">${debater2.name} (against) - Round ${round + 1}:</p>
+              <p class="text-gray-700">${response2}</p>
+            </div>
+          `;
+          historyDebater2.push({ role: 'assistant', content: response2 });
+          historyDebater1.push({ role: 'user', content: response2 });
+          debateLog.push({ debater: debater2.name, stance: 'against', text: response2, round: round + 1 });
+          debateContent.scrollTop = debateContent.scrollHeight;
+        }
+      }
+
+      scoreButton.classList.remove('hidden');
+
+      scoreButton.addEventListener('click', async () => {
+        console.log('Generating Neutral Judge Analysis');
+        const judgePrompt = createJudgePrompt(debateLog);
+        const judgeResponse = await getAIResponse(judgePrompt, [{ role: 'user', content: JSON.stringify(debateLog) }]);
+        console.log('Judge Analysis:', judgeResponse);
+        debateContent.innerHTML += `
+          <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+            <p class="font-semibold text-gray-800 bg-gray-200 p-2 rounded-t-lg">Neutral Judge Analysis:</p>
+            <p class="text-gray-700">${judgeResponse}</p>
+          </div>
+        `;
+        debateContent.scrollTop = debateContent.scrollHeight;
+        scoreButton.classList.add('hidden');
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>
