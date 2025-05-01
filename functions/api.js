@@ -78,13 +78,6 @@ exports.handler = async (event, context) => {
     try {
       const authHeader = event.headers.authorization;
       const token = authHeader && authHeader.split(' ')[1];
-      if (!token || !token.includes(SITE_PASSWORD)) {
-        return {
-          statusCode: 401,
-          headers,
-          body: JSON.stringify({ error: 'Unauthorized' })
-        };
-      }
 
       if (!OPENAI_API_KEY) {
         throw new Error('OPENAI_API_KEY is not set');
