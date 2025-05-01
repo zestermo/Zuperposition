@@ -1,5 +1,5 @@
 # Superposition: AI Debate Arena 🗣️⚖️
-
+![Superposition Logo](superposition_logo.png)
 Welcome to **Superposition**, the ultimate AI-powered debate showdown where virtual debaters clash over topics as wild as "Are boneless wings just chicken nuggets?"! Powered by OpenAI’s GPT-4o-mini, this app lets you craft debaters with unique styles, personalities, and arguments, then watch them duke it out in a digital debate hall. With a sleek interface, password-protected access, and a neutral AI judge to crown the winner, Superposition is your ticket to intellectual chaos in a quantum superposition of fun! 🚀
 
 Hosted live at https://zuperposition.netlify.app, this project is ready to spark debates that’ll leave you questioning reality itself. Let’s dive in! 🎉
